@@ -38,7 +38,7 @@ total_steps_daily <- summarise(group_by(df, date), total_steps = sum(steps))
 ```
 
 The histogram for the total number of steps taken each day is shown below
-```{r fig.height=4, message = FALSE, warning = FALSE}
+```{r total_steps_daily, fig.height=4, message = FALSE, warning = FALSE}
 ggplot(total_steps_daily, aes(x=total_steps)) + 
     geom_histogram(colour = "black") + 
     labs(title ="Histogram of Total Steps per Day", x="Total Steps per Day", y="No. of Days")
@@ -59,7 +59,7 @@ avg_daily_pattern <- summarise(group_by(df,interval), mean_steps = mean(steps, n
 ```
 
 Line plot of average daily pattern
-```{r fig.height=4}
+```{r avg_daily_pattern, fig.height=4}
 ggplot(avg_daily_pattern, aes(interval, mean_steps)) + 
         geom_line() +
         labs(title = "Average Daily Total Steps by Time Interval", x = "Time Interval", y = "Average Total Steps")
@@ -100,7 +100,7 @@ df2_total_steps <- summarise(group_by(df2,date), total_steps = sum(steps))
 ```
 
 Histogram of total number of steps taken each day
-```{r fig.height=4, message = FALSE, warning = FALSE}
+```{r df2_total_steps, fig.height=4, message = FALSE, warning = FALSE}
 ggplot(df2_total_steps, aes(x=total_steps)) + geom_histogram(colour = "black") + 
         labs(title ="Histogram of Total Steps per Day (NAs Imputed)", x="Total Steps per Day", y="No. of Days")
 ```
@@ -145,7 +145,7 @@ df2_mean_steps <- summarise(group_by(df2,interval,Type), mean_steps = mean(steps
 ```
 
 Panel plot for activity patterns for weekdays and weekends
-```{r fig.height=4, message = FALSE, warning = FALSE}
+```{r df2_weekday_weekend, fig.height=4, message = FALSE, warning = FALSE}
 ggplot(df2_mean_steps,aes(interval, mean_steps))+
     geom_line(stat="identity")+facet_grid(Type~.)+
     labs(title="Average Steps per Interval - Weekdays vs Weekends", x="Interval", y="Average Steps")
